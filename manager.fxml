@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="570.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171">
+  <tabs>
+    <Tab text="Open Account">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <HBox prefHeight="370.0" prefWidth="550.0">
+                     <children>
+                        <VBox prefHeight="345.0" prefWidth="365.0">
+                           <children>
+                              <HBox layoutX="10.0" layoutY="10.0" prefHeight="75.0" prefWidth="330.0" spacing="20.0">
+                                 <children>
+                                    <Label text="Open Account">
+                                       <font>
+                                          <Font size="25.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="15.0" top="10.0" />
+                                       </padding>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="60.0" prefWidth="200.0" spacing="20.0">
+                                 <children>
+                                    <Label text="Account type">
+                                       <padding>
+                                          <Insets left="10.0" />
+                                       </padding>
+                                    </Label>
+                                    <VBox prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <RadioButton mnemonicParsing="false" text="Checking" />
+                                          <RadioButton mnemonicParsing="false" text="Savings" />
+                                          <RadioButton mnemonicParsing="false" text="MoneyMarket" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="200.0" spacing="11.0">
+                                 <children>
+                                    <Label text="First Name">
+                                       <padding>
+                                          <Insets left="10.0" />
+                                       </padding>
+                                    </Label>
+                                    <TextField />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="50.0" prefWidth="200.0" spacing="12.0">
+                                 <children>
+                                    <Label text="Last Name">
+                                       <padding>
+                                          <Insets left="10.0" />
+                                       </padding>
+                                    </Label>
+                                    <TextField />
+                                 </children>
+                              </HBox>
+                              <HBox layoutX="10.0" layoutY="110.0" prefHeight="50.0" prefWidth="200.0" spacing="26.0">
+                                 <children>
+                                    <Label text="Deposit">
+                                       <padding>
+                                          <Insets left="10.0" />
+                                       </padding>
+                                    </Label>
+                                    <TextField />
+                                 </children>
+                              </HBox>
+                              <HBox layoutX="10.0" layoutY="245.0" prefHeight="30.0" prefWidth="200.0" spacing="25.0">
+                                 <children>
+                                    <Label />
+                                    <CheckBox mnemonicParsing="false" text="Direct Depost" />
+                                    <CheckBox mnemonicParsing="false" text="Loyal Customer" />
+                                 </children>
+                              </HBox>
+                              <HBox layoutX="10.0" layoutY="295.0" prefHeight="20.0" prefWidth="200.0" spacing="25.0">
+                                 <children>
+                                    <Label />
+                                    <Region maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="22.0" prefWidth="148.0" HBox.hgrow="ALWAYS" />
+                                    <Button mnemonicParsing="false" text="Submit" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="345.0" prefWidth="375.0">
+                           <children>
+                              <Region maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="275.0" />
+                              <Label text="Transaction Manager Ouput" />
+                              <TextArea id="Output" prefHeight="284.0" prefWidth="258.0" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children></AnchorPane>
+      </content>
+    </Tab>
+    <Tab text="Close Account">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <HBox prefHeight="370.0" prefWidth="550.0">
+                           <children>
+                              <VBox prefHeight="345.0" prefWidth="365.0">
+                                 <children>
+                                    <HBox layoutX="10.0" layoutY="10.0" prefHeight="75.0" prefWidth="330.0" spacing="20.0">
+                                       <children>
+                                          <Label text="Close Account">
+                                             <font>
+                                                <Font size="25.0" />
+                                             </font>
+                                             <padding>
+                                                <Insets left="15.0" top="10.0" />
+                                             </padding>
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="60.0" prefWidth="200.0" spacing="20.0">
+                                       <children>
+                                          <Label text="Account type">
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                          </Label>
+                                          <VBox prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <RadioButton mnemonicParsing="false" text="Checking" />
+                                                <RadioButton mnemonicParsing="false" text="Savings" />
+                                                <RadioButton mnemonicParsing="false" text="MoneyMarket" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="200.0" spacing="11.0">
+                                       <children>
+                                          <Label text="First Name">
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                          </Label>
+                                          <TextField />
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="35.0" prefWidth="200.0" spacing="12.0">
+                                       <children>
+                                          <Label text="Last Name">
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                          </Label>
+                                          <TextField />
+                                       </children>
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="195.0" prefHeight="95.0" prefWidth="200.0" spacing="12.0">
+                                       <children>
+                                          <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                                       </children>
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="295.0" prefHeight="20.0" prefWidth="200.0" spacing="25.0">
+                                       <children>
+                                          <Label />
+                                          <Region maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="22.0" prefWidth="148.0" HBox.hgrow="ALWAYS" />
+                                          <Button mnemonicParsing="false" text="Submit" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="345.0" prefWidth="375.0">
+                                 <children>
+                                    <Region maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="275.0" />
+                                    <Label text="Transaction Manager Ouput" />
+                                    <TextArea id="Output" prefHeight="284.0" prefWidth="258.0" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+               </children></AnchorPane>
+      </content>
+    </Tab>
+      <Tab text="Deposit/Withdraw">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <HBox prefHeight="370.0" prefWidth="550.0">
+                           <children>
+                              <VBox prefHeight="345.0" prefWidth="365.0">
+                                 <children>
+                                    <HBox layoutX="10.0" layoutY="10.0" prefHeight="75.0" prefWidth="330.0" spacing="20.0">
+                                       <children>
+                                          <Label text="Deposit/Withdraw">
+                                             <font>
+                                                <Font size="25.0" />
+                                             </font>
+                                             <padding>
+                                                <Insets left="15.0" top="10.0" />
+                                             </padding>
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="60.0" prefWidth="200.0" spacing="20.0">
+                                       <children>
+                                          <Label text="Account type">
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                          </Label>
+                                          <VBox prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <RadioButton mnemonicParsing="false" text="Checking" />
+                                                <RadioButton mnemonicParsing="false" text="Savings" />
+                                                <RadioButton mnemonicParsing="false" text="MoneyMarket" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="200.0" spacing="11.0">
+                                       <children>
+                                          <Label text="First Name">
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                          </Label>
+                                          <TextField />
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="50.0" prefWidth="200.0" spacing="12.0">
+                                       <children>
+                                          <Label text="Last Name">
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                          </Label>
+                                          <TextField />
+                                       </children>
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="110.0" prefHeight="50.0" prefWidth="200.0" spacing="23.0">
+                                       <children>
+                                          <Label text="Amount">
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                          </Label>
+                                          <TextField />
+                                       </children>
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="245.0" prefHeight="30.0" prefWidth="200.0" spacing="25.0">
+                                       <children>
+                                          <Label />
+                                          <RadioButton mnemonicParsing="false" text="Deposit" />
+                                          <RadioButton mnemonicParsing="false" text="Withdraw" />
+                                       </children>
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="295.0" prefHeight="20.0" prefWidth="200.0" spacing="25.0">
+                                       <children>
+                                          <Label />
+                                          <Region maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="22.0" prefWidth="148.0" HBox.hgrow="ALWAYS" />
+                                          <Button mnemonicParsing="false" text="Submit" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="345.0" prefWidth="375.0">
+                                 <children>
+                                    <Region maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="275.0" />
+                                    <Label text="Transaction Manager Ouput" />
+                                    <TextArea id="Output" prefHeight="284.0" prefWidth="258.0" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+      <Tab text="Import Details">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+         </content>
+      </Tab>
+      <Tab text="Statements">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+         </content>
+      </Tab>
+  </tabs>
+</TabPane>
