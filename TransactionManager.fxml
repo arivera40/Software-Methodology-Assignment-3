@@ -9,15 +9,16 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="570.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="570.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVC.Controller">
   <tabs>
-    <Tab text="Open Account">
+    <Tab id="openAccountTab" text="Open Account">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
@@ -49,55 +50,68 @@
                                     </Label>
                                     <VBox prefHeight="200.0" prefWidth="100.0">
                                        <children>
-                                          <RadioButton mnemonicParsing="false" text="Checking" />
-                                          <RadioButton mnemonicParsing="false" text="Savings" />
-                                          <RadioButton mnemonicParsing="false" text="MoneyMarket" />
+                                          <RadioButton id="checking" mnemonicParsing="false" text="Checking">
+                                             <toggleGroup>
+                                                <ToggleGroup fx:id="accountType" />
+                                             </toggleGroup></RadioButton>
+                                          <RadioButton id="savings" mnemonicParsing="false" onAction="#disableCheckBox" text="Savings" toggleGroup="$accountType" />
+                                          <RadioButton id="moneyMarket" mnemonicParsing="false" onAction="#disableCheckBox" text="MoneyMarket" toggleGroup="$accountType" />
                                        </children>
                                     </VBox>
                                  </children>
                               </HBox>
-                              <HBox layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="200.0" spacing="11.0">
+                              <HBox layoutX="10.0" layoutY="10.0" prefHeight="35.0" prefWidth="200.0" spacing="11.0">
                                  <children>
                                     <Label text="First Name">
                                        <padding>
                                           <Insets left="10.0" />
                                        </padding>
                                     </Label>
-                                    <TextField />
+                                    <TextField id="firstName" />
                                  </children>
                               </HBox>
-                              <HBox prefHeight="50.0" prefWidth="200.0" spacing="12.0">
+                              <HBox prefHeight="35.0" prefWidth="200.0" spacing="12.0">
                                  <children>
                                     <Label text="Last Name">
                                        <padding>
                                           <Insets left="10.0" />
                                        </padding>
                                     </Label>
-                                    <TextField />
+                                    <TextField id="lastName" />
                                  </children>
                               </HBox>
-                              <HBox layoutX="10.0" layoutY="110.0" prefHeight="50.0" prefWidth="200.0" spacing="26.0">
+                              <HBox prefHeight="35.0" prefWidth="200.0" spacing="42.0">
+                                 <children>
+                                    <Label text="Date">
+                                       <padding>
+                                          <Insets left="10.0" />
+                                       </padding>
+                                    </Label>
+                                    <TextField id="date" />
+                                 </children>
+                              </HBox>
+                              <HBox layoutX="10.0" layoutY="110.0" prefHeight="35.0" prefWidth="200.0" spacing="26.0">
                                  <children>
                                     <Label text="Deposit">
                                        <padding>
                                           <Insets left="10.0" />
                                        </padding>
                                     </Label>
-                                    <TextField />
+                                    <TextField id="amount" />
                                  </children>
                               </HBox>
                               <HBox layoutX="10.0" layoutY="245.0" prefHeight="30.0" prefWidth="200.0" spacing="25.0">
                                  <children>
                                     <Label />
-                                    <CheckBox mnemonicParsing="false" text="Direct Depost" />
-                                    <CheckBox mnemonicParsing="false" text="Loyal Customer" />
+                                    <CheckBox id="directDeposit" mnemonicParsing="false" text="Direct Depost" />
+                                    <CheckBox id="loyalCustomer" mnemonicParsing="false" text="Loyal Customer" />
                                  </children>
                               </HBox>
                               <HBox layoutX="10.0" layoutY="295.0" prefHeight="20.0" prefWidth="200.0" spacing="25.0">
                                  <children>
                                     <Label />
                                     <Region maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="22.0" prefWidth="148.0" HBox.hgrow="ALWAYS" />
-                                    <Button mnemonicParsing="false" text="Submit" />
+                                    <Button id="openAccount" mnemonicParsing="false" onAction="#openAccount" text="Submit" />
                                  </children>
                               </HBox>
                            </children>
@@ -106,7 +120,7 @@
                            <children>
                               <Region maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="275.0" />
                               <Label text="Transaction Manager Ouput" />
-                              <TextArea id="Output" prefHeight="284.0" prefWidth="258.0" />
+                              <TextArea id="output" prefHeight="284.0" prefWidth="258.0" />
                            </children>
                         </VBox>
                      </children>
@@ -114,7 +128,7 @@
                </children></AnchorPane>
       </content>
     </Tab>
-    <Tab text="Close Account">
+    <Tab id="closeAccountTab" text="Close Account">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
@@ -148,9 +162,9 @@
                                           </Label>
                                           <VBox prefHeight="200.0" prefWidth="100.0">
                                              <children>
-                                                <RadioButton mnemonicParsing="false" text="Checking" />
-                                                <RadioButton mnemonicParsing="false" text="Savings" />
-                                                <RadioButton mnemonicParsing="false" text="MoneyMarket" />
+                                                <RadioButton id="checking" mnemonicParsing="false" text="Checking" toggleGroup="$accountType" />
+                                                <RadioButton id="savings" mnemonicParsing="false" text="Savings" toggleGroup="$accountType" />
+                                                <RadioButton id="moneyMarket" mnemonicParsing="false" text="MoneyMarket" toggleGroup="$accountType" />
                                              </children>
                                           </VBox>
                                        </children>
@@ -162,7 +176,7 @@
                                                 <Insets left="10.0" />
                                              </padding>
                                           </Label>
-                                          <TextField />
+                                          <TextField id="firstName" />
                                        </children>
                                     </HBox>
                                     <HBox prefHeight="35.0" prefWidth="200.0" spacing="12.0">
@@ -172,7 +186,7 @@
                                                 <Insets left="10.0" />
                                              </padding>
                                           </Label>
-                                          <TextField />
+                                          <TextField id="lastName" />
                                        </children>
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="195.0" prefHeight="95.0" prefWidth="200.0" spacing="12.0">
@@ -184,7 +198,7 @@
                                        <children>
                                           <Label />
                                           <Region maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="22.0" prefWidth="148.0" HBox.hgrow="ALWAYS" />
-                                          <Button mnemonicParsing="false" text="Submit" />
+                                          <Button id="closeAccount" mnemonicParsing="false" text="Submit" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -193,7 +207,7 @@
                                  <children>
                                     <Region maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="275.0" />
                                     <Label text="Transaction Manager Ouput" />
-                                    <TextArea id="Output" prefHeight="284.0" prefWidth="258.0" />
+                                    <TextArea id="output" prefHeight="284.0" prefWidth="258.0" />
                                  </children>
                               </VBox>
                            </children>
@@ -203,7 +217,7 @@
                </children></AnchorPane>
       </content>
     </Tab>
-      <Tab text="Deposit/Withdraw">
+      <Tab id="transactionTab" text="Deposit/Withdraw">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
@@ -237,9 +251,9 @@
                                           </Label>
                                           <VBox prefHeight="200.0" prefWidth="100.0">
                                              <children>
-                                                <RadioButton mnemonicParsing="false" text="Checking" />
-                                                <RadioButton mnemonicParsing="false" text="Savings" />
-                                                <RadioButton mnemonicParsing="false" text="MoneyMarket" />
+                                                <RadioButton id="checking" mnemonicParsing="false" text="Checking" />
+                                                <RadioButton id="savings" mnemonicParsing="false" text="Savings" />
+                                                <RadioButton id="moneyMarket" mnemonicParsing="false" text="MoneyMarket" />
                                              </children>
                                           </VBox>
                                        </children>
@@ -251,7 +265,7 @@
                                                 <Insets left="10.0" />
                                              </padding>
                                           </Label>
-                                          <TextField />
+                                          <TextField id="firstName" />
                                        </children>
                                     </HBox>
                                     <HBox prefHeight="50.0" prefWidth="200.0" spacing="12.0">
@@ -261,7 +275,7 @@
                                                 <Insets left="10.0" />
                                              </padding>
                                           </Label>
-                                          <TextField />
+                                          <TextField id="lastName" />
                                        </children>
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="110.0" prefHeight="50.0" prefWidth="200.0" spacing="23.0">
@@ -271,21 +285,24 @@
                                                 <Insets left="10.0" />
                                              </padding>
                                           </Label>
-                                          <TextField />
+                                          <TextField id="amount" />
                                        </children>
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="245.0" prefHeight="30.0" prefWidth="200.0" spacing="25.0">
                                        <children>
                                           <Label />
-                                          <RadioButton mnemonicParsing="false" text="Deposit" />
-                                          <RadioButton mnemonicParsing="false" text="Withdraw" />
+                                          <RadioButton id="deposit" mnemonicParsing="false" text="Deposit">
+                                             <toggleGroup>
+                                                <ToggleGroup fx:id="transactionType" />
+                                             </toggleGroup></RadioButton>
+                                          <RadioButton id="withdraw" mnemonicParsing="false" text="Withdraw" toggleGroup="$transactionType" />
                                        </children>
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="295.0" prefHeight="20.0" prefWidth="200.0" spacing="25.0">
                                        <children>
                                           <Label />
                                           <Region maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="22.0" prefWidth="148.0" HBox.hgrow="ALWAYS" />
-                                          <Button mnemonicParsing="false" text="Submit" />
+                                          <Button id="closeAccount" mnemonicParsing="false" text="Submit" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -305,12 +322,12 @@
             </AnchorPane>
          </content>
       </Tab>
-      <Tab text="Import Details">
+      <Tab id="tab" text="Import Details">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
          </content>
       </Tab>
-      <Tab text="Statements">
+      <Tab id="tab" text="Statements">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
          </content>
