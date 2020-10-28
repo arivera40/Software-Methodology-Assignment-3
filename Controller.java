@@ -121,6 +121,24 @@ public class Controller {
     }
 
     @FXML
+    /**
+     * Event Handler for closeAccount button
+     * @param event
+     */
+    void closeAccount(ActionEvent event) {
+
+    }
+
+    @FXML
+    /**
+     * Event Handler for transactionSubmit button
+     * @param event
+     */
+    void transactionSubmit(ActionEvent event) {
+
+    }
+
+    @FXML
     void disableCheckBox(ActionEvent moneyMarket){
         if(checking.isSelected()){
             directDeposit.setSelected(true);
