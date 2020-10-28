@@ -47,50 +47,40 @@ public class AccountDatabase {
     }
 
     //return false if account doesn't exists
-    public boolean remove(Account account) {
+    public String remove(Account account) {
         int accountIndex = find(account);
-        if(accountIndex != -1){
+        if(accountIndex != -1) {
             accounts[accountIndex] = accounts[size - 1];
             accounts[size - 1] = null;
             size--;
-            System.out.println("Account closed and removed from the database");
-            return true;
+            return "Account closed and removed from the database.\n";
         }
-        System.out.println("Account does not exist.");
-        return false;
+        return "Account does not exist.\n";
     }
 
     //return false if account doesn’t exist
-    public boolean deposit(Account account, double amount) {
+    public String deposit(Account account, double amount) {
         int accountIndex = find(account);
         if(accountIndex != -1){
             accounts[accountIndex].credit(amount);
-            System.out.println(amount + " deposited to account.");
-            return true;
+            return amount + " deposited to account.\n";
         }
-        return false;
+        return "Account does not exist.\n";
     }
 
-    //return 0: withdrawal successful, 1: insufficient funds, -1 account doesn’t exist
-    public int withdrawal(Account account, double amount) {
+    public String withdrawal(Account account, double amount) {
         int accountIndex = find(account);
         if(accountIndex == -1){
-            System.out.println("Account does not exist.");
-            return -1;
-
+            return "Account does not exist.\n";
         }else if(accounts[accountIndex].getBalance() >= amount) {
             accounts[accountIndex].debit(amount);
             if(account.getAccountType().equals("Money Market")){
                 MoneyMarket tempAccount = (MoneyMarket)accounts[accountIndex];
                 tempAccount.addWithdrawl();
             }
-
-            System.out.println(amount + " withdrawn from account");//amount needs to be formatted
-            return 0;
-
+            return amount + " withdrawn from account.\n";
         }else {
-            System.out.println("Insufficient funds.");
-            return 1;
+            return "Insufficient funds.\n";
         }
     }
 
