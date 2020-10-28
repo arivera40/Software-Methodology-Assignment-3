@@ -8,13 +8,11 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    Scene home;
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("manager.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("TransactionManager.fxml"));
         primaryStage.setTitle("TransactionManager");
-        home = new Scene(root, 300, 275);
-        primaryStage.setScene(home);
+        primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
 
     }
