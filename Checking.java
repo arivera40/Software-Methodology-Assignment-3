@@ -1,8 +1,6 @@
 package MVC;
 
 public class Checking extends Account {
-
-    public int v;
     public Checking(double balance, Profile holder, Date dateOpen) {
         super(balance, holder, dateOpen);
     }
@@ -15,6 +13,10 @@ public class Checking extends Account {
             return 0;
         }
         return 25;
+    }
+
+    public String toString(){
+        return super.toString();
     }
 
     @Override
