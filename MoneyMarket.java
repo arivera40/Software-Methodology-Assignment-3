@@ -22,8 +22,12 @@ public class MoneyMarket extends Account {
         return  (this.getBalance() * (0.65 / 12)) / 100;
     }
 
-    public int addWithdrawl(){
-        withdrawals++;
+    public String toString(){
+        return super.toString();
+    }
+
+    public int addWithdrawl(int withdraws){
+        withdrawals = withdraws;
         return withdrawals;
     }
 
