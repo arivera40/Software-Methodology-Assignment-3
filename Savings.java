@@ -1,7 +1,6 @@
 package MVC;
 
 public class Savings extends Account {
-    public int v;
     private boolean isLoyal;
 
     public Savings(double balance, Profile holder, Date dateOpen) {
@@ -15,6 +14,10 @@ public class Savings extends Account {
             return 0;
         }
         return 5;
+    }
+
+    public String toString(){
+        return super.toString();
     }
 
     public void setIsLoyal(boolean isLoyal){
