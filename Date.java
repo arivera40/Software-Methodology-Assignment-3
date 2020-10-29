@@ -80,7 +80,7 @@ public class Date implements Comparable<Date> {
     }
 
     //Wikipedia: leap year if year multiple of 4
-    // (except for years evenly divisble by 100, whcih are not leap years unless evenly divisble by 400)
+    // (except for years evenly divisible by 100, which are not leap years unless evenly divisible by 400)
     public boolean isLeapYear(int year){
         if(year % 4 == 0){
             if(year % 100 == 0){
@@ -94,42 +94,6 @@ public class Date implements Comparable<Date> {
             }
         }
         return false;
-    }
-
-    public String checkDate(String date){
-        int count = 0;
-        for(int i=0; i < date.length(); i++){
-            if(date.charAt(i) == '/') count++;
-        }
-        if(count != 2){
-            return "Input data type mismatch";
-        }
-        StringTokenizer tokens = new StringTokenizer(date, "/");
-        int day = 0;
-        int month = 0;
-        int year = 0;
-        for(int i=0; tokens.hasMoreTokens(); i++){
-            String temp = tokens.nextToken();
-            try{
-                if(i == 0){
-                    month = Integer.parseInt(temp);
-                }else if(i == 1){
-                    day = Integer.parseInt(temp);
-                }else if(i == 2){
-                    year = Integer.parseInt(temp);
-                }else{
-                    return null;	//malformed
-                }
-            }catch(NumberFormatException e){
-                return "Input data type mismatch";
-            }
-        }
-        if(new Date(year, month, day).isValid()){
-            return "";
-        }else{
-            return "Invalid date";
-        }
-
     }
 }
 
