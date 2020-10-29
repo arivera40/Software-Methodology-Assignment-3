@@ -76,7 +76,7 @@ public class AccountDatabase {
             accounts[accountIndex].debit(amount);
             if(account.getAccountType().equals("Money Market")){
                 MoneyMarket tempAccount = (MoneyMarket)accounts[accountIndex];
-                tempAccount.addWithdrawl();
+                tempAccount.addWithdrawl(1);
             }
             return amount + " withdrawn from account.\n";
         }else {
@@ -178,16 +178,16 @@ public class AccountDatabase {
     }
 
     // method to print all accounts in the database
-    public void printAccounts() {
+    public String printAccounts() {
+        String output = "";
         if(size > 0){
-            System.out.println("--Listing accounts in the database--");
             for(int i=0; i < size; i++){
-                System.out.println(accounts[i].toString());
+                output += (i == size - 1) ? accounts[i].toString() : accounts[i].toString() + "\n";
             }
-            System.out.println("--end of listing--");
         }else{
-            System.out.println("Database is empty.");
+            output = "Database is empty.";
         }
+        return output;
     }
 
 }
