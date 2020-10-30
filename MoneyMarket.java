@@ -26,12 +26,11 @@ public class MoneyMarket extends Account {
         return super.toString();
     }
 
-    public int addWithdrawl(int withdraws){
+    public void addWithdraw(int withdraws){
         withdrawals = withdraws;
-        return withdrawals;
     }
 
-    public int getWithdrawlCount(){
+    public int getWithdrawCount(){
         return withdrawals;
     }
 
