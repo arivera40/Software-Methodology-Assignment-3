@@ -32,12 +32,12 @@ public abstract class Account {
         String accountBalance = formatNumber(this.getBalance());
         if(this.getAccountType().equals("Money Market")){
             MoneyMarket account = (MoneyMarket)this;
-            int withdrawlCount = account.getWithdrawlCount();
+            int withdrawCount = account.getWithdrawCount();
             accountStr =  "M," + this.holder.getFirstName() + ","
                     + this.holder.getLastName() + ","
                     + accountBalance + ","
                     + this.dateOpen.toString() + ","
-                    + withdrawlCount;
+                    + withdrawCount;
         }else if(this.getAccountType().equals("Savings")){
             Savings account = (Savings)this;
             accountStr =  "S," + this.holder.getFirstName() + ","
@@ -62,13 +62,13 @@ public abstract class Account {
         String accountBalance = formatNumber(this.getBalance());
         if(this.getAccountType().equals("Money Market")){
             MoneyMarket account = (MoneyMarket)this;
-            int withdrawlCount = account.getWithdrawlCount();
+            int withdrawCount = account.getWithdrawCount();
             accountStr =  "*" + this.getAccountType() + "*"
                     + this.holder.getFirstName() + " "
                     + this.holder.getLastName() + "*"
                     + accountBalance + "*"
                     + this.dateOpen.toString() + "*"
-                    + withdrawlCount + " withdrawls*";
+                    + withdrawCount + " withdrawals*";
         }else if(this.getAccountType().equals("Savings")){
             Savings account = (Savings)this;
             accountStr =  "*" + this.getAccountType() + "*"
