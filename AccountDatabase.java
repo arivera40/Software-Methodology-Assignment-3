@@ -131,9 +131,10 @@ public class AccountDatabase {
         }
     }
     // method to print accounts by when they were opened
-    public void printByDateOpen() {
+    public String printByDateOpen() {
+        String status = "";
         if(size > 0){
-            System.out.println("--Printing statements by date opened--\n");
+            status += "--Printing statements by date opened--\n";
             sortByDateOpen();
             for(int i=0; i < size; i++){
                 double monthlyInterest = accounts[i].monthlyInterest();
@@ -142,21 +143,23 @@ public class AccountDatabase {
                 String monthlyInterestStr = formatNumber(monthlyInterest);
                 String monthlyFeeStr = formatNumber(monthlyFee);
                 String newBalanceStr = formatNumber(newBalance);
-                System.out.println(accounts[i].toString());
-                System.out.println("-interest: $ " + monthlyInterestStr);
-                System.out.println("-fee: $ " + monthlyFeeStr);
-                System.out.println("-new balance: $ " + ((i != size-1) ? newBalanceStr + "\n" : newBalanceStr));
+                status += accounts[i].toString() + "\n";
+                status += "-interest: $ " + monthlyInterestStr + "\n";
+                status += "-fee: $ " + monthlyFeeStr + "\n";
+                status += "-new balance: $ " + ((i != size-1) ? newBalanceStr + "\n" : newBalanceStr) + "\n";
                 accounts[i].updateBalance(newBalance);
             }
-            System.out.println("--end of printing--");
+            status += "--end of printing--\n";
         }else{
-            System.out.println("Database is empty.");
+            status += "Database is empty.\n";
         }
+        return status;
     }
     // method to print accounts by the holder's last name
-    public void printByLastName() {
+    public String printByLastName() {
+        String status = "";
         if(size > 0){
-            System.out.println("--Printing statements by last name--\n");
+            status += "--Printing statements by last name--\n";
             sortByLastName();
             for(int i=0; i < size; i++){
                 double monthlyInterest = accounts[i].monthlyInterest();
@@ -165,24 +168,39 @@ public class AccountDatabase {
                 String monthlyInterestStr = formatNumber(monthlyInterest);
                 String monthlyFeeStr = formatNumber(monthlyFee);
                 String newBalanceStr = formatNumber(newBalance);
-                System.out.println(accounts[i].toString());
-                System.out.println("-interest: $ " + monthlyInterestStr);
-                System.out.println("-fee: $ " + monthlyFeeStr);
-                System.out.println("-new balance: $ " + ((i != size-1) ? newBalanceStr + "\n" : newBalanceStr));
+                status += accounts[i].toString() + "\n";
+                status += "-interest: $ " + monthlyInterestStr + "\n";
+                status += "-fee: $ " + monthlyFeeStr + "\n";
+                status += "-new balance: $ " + ((i != size-1) ? newBalanceStr + "\n" : newBalanceStr) + "\n";
                 accounts[i].updateBalance(newBalance);
             }
-            System.out.println("--end of printing--");
+            status += "--end of printing--\n";
         }else{
-            System.out.println("Database is empty.");
+            status = "Database is empty.\n";
         }
+        return status;
     }
 
     // method to print all accounts in the database
     public String printAccounts() {
         String output = "";
         if(size > 0){
+            output += "--Listing accounts in the database--\n";
             for(int i=0; i < size; i++){
-                output += (i == size - 1) ? accounts[i].toString() : accounts[i].toString() + "\n";
+                output += accounts[i].toString() + "\n";
+            }
+            output += "--end of listing--\n";
+        }else{
+            output = "Database is empty.\n";
+        }
+        return output;
+    }
+
+    public String writeAccounts(){
+        String output = "";
+        if(size > 0){
+            for(int i=0; i < size; i++){
+                output += (i == size - 1) ? accounts[i].toStringExportFormat() : accounts[i].toStringExportFormat() + "\n";
             }
         }else{
             output = "Database is empty.";
