@@ -76,7 +76,7 @@ public class AccountDatabase {
             accounts[accountIndex].debit(amount);
             if(account.getAccountType().equals("Money Market")){
                 MoneyMarket tempAccount = (MoneyMarket)accounts[accountIndex];
-                tempAccount.addWithdrawl(1);
+                tempAccount.addWithdraw(1);
             }
             return amount + " withdrawn from account.\n";
         }else {
