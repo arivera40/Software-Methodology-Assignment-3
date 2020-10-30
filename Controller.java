@@ -100,7 +100,13 @@ public class Controller {
 
     //FXML Variables for printTab
     @FXML
+    private Button exportButton;
+    @FXML
     private Button printButton;
+    @FXML
+    private Button printByNameButton;
+    @FXML
+    private Button printByDateButton;
     @FXML
     private TextArea exportOutput;
     //---------------
@@ -130,11 +136,7 @@ public class Controller {
     void openAccount(ActionEvent event) {
         System.out.println("Enters openAccount control...");
         System.out.println(openFirstName.getText());
-        if (!openChecking.isSelected() && !openSavings.isSelected() && !openMoneyMarket.isSelected()) {
-            System.out.println("Enters isSelected if statement...");
-            openOutput.appendText("Please select an Account type\n");
-            return;
-        }
+        if(!openFormCheck()) return;
         Profile holder = new Profile(openFirstName.getText(), openLastName.getText());
         Double initialDeposit = Double.parseDouble(openAmount.getText());
         Date openDate = parseDate(date.getText());
@@ -152,6 +154,40 @@ public class Controller {
             MoneyMarket account = new MoneyMarket(initialDeposit, holder, openDate);
             openOutput.appendText(account_interaction.add(account));
         }
+        clearOpenFormFields();
+    }
+
+    private boolean openFormCheck(){
+        int dateCheck = checkDate(date.getText());
+        if (!openChecking.isSelected() && !openSavings.isSelected() && !openMoneyMarket.isSelected()) {
+            openOutput.appendText("Please select an Account type.\n");
+            return false;
+        }else if(openFirstName.getText().length() == 0){
+            openOutput.appendText("Please enter your first name.\n");
+            return false;
+        }else if(!isAlphabetic(openFirstName.getText())){
+            openOutput.appendText("Please enter only alphabetic characters for the first name field.\n");
+            return false;
+        }else if(openLastName.getText().length() == 0){
+            openOutput.appendText("Please enter your last name.\n");
+            return false;
+        }else if(!isAlphabetic(openLastName.getText())){
+            openOutput.appendText("Please enter only alphabetic characters for the last name field.\n");
+            return false;
+        }else if(dateCheck == -1){
+            openOutput.appendText("Please enter a properly formatted date.\n");
+            return false;
+        }else if(dateCheck == 0){
+            openOutput.appendText("Please enter a valid date.\n");
+            return false;
+        }else if(openAmount.getText().length() == 0){
+            openOutput.appendText("Please enter an amount you wish to deposit, otherwise enter 0.\n");
+            return false;
+        }else if(!isNumeric(openAmount.getText())){
+            openOutput.appendText("Please enter numeric values only for the deposit field.\n");
+            return false;
+        }
+        return true;
     }
 
     @FXML
@@ -161,11 +197,7 @@ public class Controller {
      */
     void closeAccount(ActionEvent event) {
         System.out.println("Enters closeAccount control...");
-        if (!closeChecking.isSelected() && !closeSavings.isSelected() && !closeMoneyMarket.isSelected()) {
-            System.out.println("Enters isSelected if statement...");
-            closeOutput.appendText("Please select an Account type\n");
-            return;
-        }
+        if (!closeFormCheck()) return;
         Profile holder = new Profile(closeFirstName.getText(), closeLastName.getText());
         Date tempDate = parseDate("12/12/2012");
 
@@ -179,6 +211,33 @@ public class Controller {
             MoneyMarket account = new MoneyMarket(0, holder, tempDate);
             closeOutput.appendText(account_interaction.remove(account));
         }
+        clearCloseFormFields();
+    }
+
+    private boolean closeFormCheck(){
+        if (!closeChecking.isSelected() && !closeSavings.isSelected() && !closeMoneyMarket.isSelected()) {
+            closeOutput.appendText("Please select an Account type.\n");
+            return false;
+        }else if(closeFirstName.getText().length() == 0){
+            closeOutput.appendText("Please enter your first name.\n");
+            return false;
+        }else if(!isAlphabetic(closeFirstName.getText())){
+            closeOutput.appendText("Please enter only alphabetic characters for the first name field.\n");
+            return false;
+        }else if(closeLastName.getText().length() == 0){
+            closeOutput.appendText("Please enter your last name.\n");
+            return false;
+        }else if(!isAlphabetic(closeLastName.getText())){
+            closeOutput.appendText("Please enter only alphabetic characters for the last name field.\n");
+            return false;
+        }else if(openAmount.getText().length() == 0){
+            closeOutput.appendText("Please enter an amount you wish to deposit, otherwise enter 0.\n");
+            return false;
+        }else if(!isNumeric(openAmount.getText())){
+            closeOutput.appendText("Please enter numeric values only for the deposit field.\n");
+            return false;
+        }
+        return true;
     }
 
     @FXML
@@ -188,11 +247,7 @@ public class Controller {
      */
     void transactionSubmit(ActionEvent event) {
         System.out.println("Enters transactionSubmit control...");
-        if (!transactionChecking.isSelected() && !transactionSavings.isSelected() && !transactionMoneyMarket.isSelected()) {
-            System.out.println("Enters isSelected if statement...");
-            closeOutput.appendText("Please select an Account type\n");
-            return;
-        }
+        if (!transactionFormCheck()) return;
         Profile holder = new Profile(transactionFirstName.getText(), transactionLastName.getText());
         Date tempDate = parseDate("12/12/2012");
         Double amount = Double.parseDouble(transactionAmount.getText());
@@ -209,6 +264,32 @@ public class Controller {
             status = (deposit.isSelected()) ? account_interaction.deposit(account, amount) : account_interaction.withdrawal(account, amount);
         }
         transactionOutput.appendText(status);
+        clearTransactionFormFields();
+    }
+
+    private boolean transactionFormCheck(){
+        if (!transactionChecking.isSelected() && !transactionSavings.isSelected() && !transactionMoneyMarket.isSelected()) {
+            transactionOutput.appendText("Please select an Account type.\n");
+            return false;
+        }else if(transactionFirstName.getText().length() == 0){
+            transactionOutput.appendText("Please enter your first name.\n");
+            return false;
+        }else if(!isAlphabetic(transactionFirstName.getText())){
+            transactionOutput.appendText("Please enter only alphabetic characters for the first name field.\n");
+            return false;
+        }else if(transactionLastName.getText().length() == 0){
+            transactionOutput.appendText("Please enter your last name.\n");
+            return false;
+        }else if(!isAlphabetic(transactionLastName.getText())){
+            transactionOutput.appendText("Please enter only alphabetic characters for the last name field.\n");
+            return false;
+        }else if(transactionAmount.getText().length() == 0){
+            transactionOutput.appendText("Please enter an amount you wish to deposit, otherwise enter 0.\n");
+            return false;
+        }else if(!isNumeric(transactionAmount.getText())){
+            transactionOutput.appendText("Please enter numeric values only for the deposit field.\n");
+        }
+        return true;
     }
 
     @FXML
@@ -217,6 +298,7 @@ public class Controller {
      * @param event
      */
     void importFile(ActionEvent event){
+        if(importOutput.getText().length() > 0) importOutput.clear();
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Open Text File for the Import");
         chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.txt"),
@@ -276,7 +358,7 @@ public class Controller {
                         }
                     } else if (token[0].equals("M")) {
                         MoneyMarket account = new MoneyMarket(balance, holder, date);
-                        account.addWithdrawl(Integer.parseInt(token[5]));
+                        account.addWithdraw(Integer.parseInt(token[5]));
                         importOutput.appendText(account_interaction.add(account));
                     } else {  //Unknown Account Type
                         importOutput.appendText("Unknown Account type in line " + lineNum + "\n");
@@ -300,6 +382,7 @@ public class Controller {
      * @param event
      */
     void exportFile(ActionEvent event){
+        if(exportOutput.getText().length() > 0) exportOutput.clear();
         System.out.println("Enters export");
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Specify Text File to Export to");
@@ -314,7 +397,7 @@ public class Controller {
                 return;
             }
             FileWriter writer = new FileWriter(outputFile);
-            String status = account_interaction.printAccounts();
+            String status = account_interaction.writeAccounts();
             if(status.equals("Database is empty.")){
                 exportOutput.appendText(status + " File remains unchanged.\n");
             }else{
@@ -330,17 +413,78 @@ public class Controller {
     }
 
     @FXML
+    void print(ActionEvent event){
+        if(exportOutput.getText().length() > 0) exportOutput.clear();
+        exportOutput.appendText(account_interaction.printAccounts());
+    }
+
+    @FXML
+    void printByName(ActionEvent event){
+        if(exportOutput.getText().length() > 0) exportOutput.clear();
+        exportOutput.appendText(account_interaction.printByLastName());
+    }
+
+    @FXML void printByDate(ActionEvent event){
+        if(exportOutput.getText().length() > 0) exportOutput.clear();
+        exportOutput.appendText(account_interaction.printByDateOpen());
+    }
+
+    @FXML
     void disableCheckBox(ActionEvent moneyMarket){
         if(openChecking.isSelected()){
+            if(directDeposit.isSelected()) directDeposit.setSelected(false);
             directDeposit.setDisable(false);
             loyalCustomer.setDisable(true);
         }else if(openSavings.isSelected()){
+            if(loyalCustomer.isSelected()) loyalCustomer.setSelected(false);
             loyalCustomer.setDisable(false);
             directDeposit.setDisable(true);
         }else{
+            if(directDeposit.isSelected()) directDeposit.setSelected(false);
+            if(loyalCustomer.isSelected()) loyalCustomer.setSelected(false);
             loyalCustomer.setDisable(true);
             directDeposit.setDisable(true);
         }
+    }
+
+    private boolean isAlphabetic(String name){
+        return name.matches("^[a-zA-Z]*$");
+    }
+
+    private boolean isNumeric(String amount){
+        return amount.matches("[0-9]*\\.?[0-9]+$");
+    }
+
+    private void clearOpenFormFields(){
+        if(openChecking.isSelected()) openChecking.setSelected(false);
+        if(openSavings.isSelected()) openSavings.setSelected(false);
+        if(openMoneyMarket.isSelected()) openMoneyMarket.setSelected(false);
+        openFirstName.clear();
+        openLastName.clear();
+        date.clear();
+        openAmount.clear();
+        if(directDeposit.isSelected()) directDeposit.setSelected(false);
+        if(loyalCustomer.isSelected()) directDeposit.setSelected(false);
+    }
+
+    private void clearCloseFormFields(){
+        if(closeChecking.isSelected()) openChecking.setSelected(false);
+        if(closeSavings.isSelected()) openSavings.setSelected(false);
+        if(closeMoneyMarket.isSelected()) openMoneyMarket.setSelected(false);
+        closeFirstName.clear();
+        closeLastName.clear();
+
+    }
+
+    private void clearTransactionFormFields(){
+        if(transactionChecking.isSelected()) openChecking.setSelected(false);
+        if(transactionSavings.isSelected()) openSavings.setSelected(false);
+        if(transactionMoneyMarket.isSelected()) openMoneyMarket.setSelected(false);
+        transactionFirstName.clear();
+        transactionLastName.clear();
+        transactionAmount.clear();
+        if(deposit.isSelected()) deposit.setSelected(false);
+        if(withdraw.isSelected()) withdraw.setSelected(false);
     }
 
     private Date parseDate(String date){
