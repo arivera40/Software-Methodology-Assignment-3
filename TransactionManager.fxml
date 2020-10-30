@@ -90,7 +90,7 @@
                                           <Insets left="10.0" />
                                        </padding>
                                     </Label>
-                                    <TextField fx:id="date" />
+                                    <TextField fx:id="date" promptText="mm/dd/yyyy" />
                                  </children>
                               </HBox>
                               <HBox layoutX="10.0" layoutY="110.0" prefHeight="35.0" prefWidth="200.0" spacing="26.0">
@@ -398,8 +398,8 @@
                      <children>
                         <GridPane layoutX="1.0" layoutY="1.0" prefHeight="188.0" prefWidth="570.0" AnchorPane.topAnchor="0.0">
                            <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="553.3999633789062" minWidth="10.0" prefWidth="459.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="279.79998779296875" minWidth="10.0" prefWidth="111.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="553.3999633789062" minWidth="10.0" prefWidth="530.6000366210938" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="279.79998779296875" minWidth="10.0" prefWidth="39.39996337890625" />
                            </columnConstraints>
                            <rowConstraints>
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -428,25 +428,44 @@
                                     <Insets left="10.0" />
                                  </padding>
                               </Label>
-                              <Button fx:id="printButton" mnemonicParsing="false" onAction="#exportFile" text="Print" GridPane.rowIndex="3">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" />
-                                 </GridPane.margin>
-                              </Button>
                               <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
                                  <children>
-                                    <Label prefHeight="17.0" prefWidth="403.0" text="Print functionality if used to export accounts currently within the database">
+                                    <Label prefHeight="17.0" prefWidth="515.0" text="Print functionality is used to display the current accounts in the database to the output window.">
                                        <VBox.margin>
                                           <Insets left="10.0" top="10.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label prefHeight="17.0" prefWidth="385.0" text="into a text file. The contents of the file will be formatted as follows:">
+                                    <Label prefHeight="17.0" prefWidth="506.0" text="Export functionality is used to write current accounts to a Text File in the following format.">
                                        <VBox.margin>
                                           <Insets left="10.0" />
                                        </VBox.margin>
                                     </Label>
                                  </children>
                               </VBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
+                                 <children>
+                                    <Button fx:id="exportButton" mnemonicParsing="false" onAction="#exportFile" text="Export">
+                                       <HBox.margin>
+                                          <Insets left="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Button fx:id="printButton" mnemonicParsing="false" onAction="#print" text="Print">
+                                       <HBox.margin>
+                                          <Insets left="5.0" top="10.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Button fx:id="printByNameButton" mnemonicParsing="false" onAction="#printByName" text="Print by Name">
+                                       <HBox.margin>
+                                          <Insets left="5.0" top="10.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Button fx:id="printByDateButton" mnemonicParsing="false" onAction="#printByDate" text="Print by Date">
+                                       <HBox.margin>
+                                          <Insets left="5.0" top="10.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                              </HBox>
                            </children>
                         </GridPane>
                         <VBox layoutX="-2.0" layoutY="183.0" prefHeight="188.0" prefWidth="576.0">
