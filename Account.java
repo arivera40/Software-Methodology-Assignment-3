@@ -7,7 +7,7 @@ public abstract class Account {
     private double balance;
     private Date dateOpen;
 
-    final private String pattern = "000.00";
+    final private String pattern = "0.00";
 
     public Account(double balance, Profile holder, Date dateOpen){
         this.balance = balance;
@@ -27,8 +27,7 @@ public abstract class Account {
         balance += amount;
     }
 
-    @Override
-    public String toString() {
+    public String toStringExportFormat() {
         String accountStr = "";
         String accountBalance = formatNumber(this.getBalance());
         if(this.getAccountType().equals("Money Market")){
@@ -53,6 +52,43 @@ public abstract class Account {
                     + accountBalance + ","
                     + this.dateOpen.toString() + ","
                     + account.getDirectDeposit();
+        }
+        return accountStr;
+    }
+
+    @Override
+    public String toString(){
+        String accountStr = "";
+        String accountBalance = formatNumber(this.getBalance());
+        if(this.getAccountType().equals("Money Market")){
+            MoneyMarket account = (MoneyMarket)this;
+            int withdrawlCount = account.getWithdrawlCount();
+            accountStr =  "*" + this.getAccountType() + "*"
+                    + this.holder.getFirstName() + " "
+                    + this.holder.getLastName() + "*"
+                    + accountBalance + "*"
+                    + this.dateOpen.toString() + "*"
+                    + withdrawlCount + " withdrawls*";
+        }else if(this.getAccountType().equals("Savings")){
+            Savings account = (Savings)this;
+            accountStr =  "*" + this.getAccountType() + "*"
+                    + this.holder.getFirstName() + " "
+                    + this.holder.getLastName() + "*"
+                    + accountBalance + "*"
+                    + this.dateOpen.toString();
+            if(account.getIsLoyal()){
+                accountStr += "*special Savings account*";
+            }
+        }else{
+            Checking account = (Checking)this;
+            accountStr =  "*" + this.getAccountType() + "*"
+                    + this.holder.getFirstName() + " "
+                    + this.holder.getLastName() + "*"
+                    + accountBalance + "*"
+                    + this.dateOpen.toString();
+            if(account.getDirectDeposit()){
+                accountStr += "*direct deposit account";
+            }
         }
         return accountStr;
     }
