@@ -2,6 +2,15 @@ package MVC;
 
 import java.text.DecimalFormat;
 
+/**
+ * This is the class for Account which is an Abstract class
+ * that defines account will extend out to savings, checking, and money market
+ * 
+ * 
+ * @author Andy Rivera and Joseph Shamma
+ *
+ */
+
 public abstract class Account {
     private Profile holder;
     private double balance;
@@ -15,18 +24,27 @@ public abstract class Account {
         this.dateOpen = dateOpen;
     }
 
-    //decrease the balance by amount
+    /**
+     * decrease the balance by amount
+     * @param amount
+     */
     public void debit(double amount) {
         if(amount <= balance) {
             balance -= amount;
         }
     }
 
-    //increase the balance by amount
+    /**
+     * increase the balance by amount
+     * @param amount
+     */
     public void credit(double amount) {
         balance += amount;
     }
-
+    /**
+     * Formatting the string for the export file
+     * @return
+     */
     public String toStringExportFormat() {
         String accountStr = "";
         String accountBalance = formatNumber(this.getBalance());
@@ -55,7 +73,9 @@ public abstract class Account {
         }
         return accountStr;
     }
-
+    /**
+     * To string method to format accounts correctly
+     */
     @Override
     public String toString(){
         String accountStr = "";
@@ -65,7 +85,7 @@ public abstract class Account {
             int withdrawCount = account.getWithdrawCount();
             accountStr =  "*" + this.getAccountType() + "*"
                     + this.holder.getFirstName() + " "
-                    + this.holder.getLastName() + "*"
+                    + this.holder.getLastName() + "* "
                     + accountBalance + "*"
                     + this.dateOpen.toString() + "*"
                     + withdrawCount + " withdrawals*";
@@ -73,7 +93,7 @@ public abstract class Account {
             Savings account = (Savings)this;
             accountStr =  "*" + this.getAccountType() + "*"
                     + this.holder.getFirstName() + " "
-                    + this.holder.getLastName() + "*"
+                    + this.holder.getLastName() + "* "
                     + accountBalance + "*"
                     + this.dateOpen.toString();
             if(account.getIsLoyal()){
@@ -83,7 +103,7 @@ public abstract class Account {
             Checking account = (Checking)this;
             accountStr =  "*" + this.getAccountType() + "*"
                     + this.holder.getFirstName() + " "
-                    + this.holder.getLastName() + "*"
+                    + this.holder.getLastName() + "* "
                     + accountBalance + "*"
                     + this.dateOpen.toString();
             if(account.getDirectDeposit()){
@@ -92,7 +112,9 @@ public abstract class Account {
         }
         return accountStr;
     }
-
+    /**
+     * Equals method checks to see if an account exists already
+     */
     @Override
     public boolean equals(Object obj){
         if(obj instanceof Account){
@@ -103,13 +125,21 @@ public abstract class Account {
         }
         return false;
     }
-
+    /**
+     * formatNumber formats an amount to two decimal places
+     * @param balance
+     * @return
+     */
     private String formatNumber(double balance){
         DecimalFormat decimalFormat = new DecimalFormat(pattern);
         String numberStr = decimalFormat.format(balance);
         return numberStr;
     }
-
+    /**
+     * When depositing and amount or interest is charged it will show 
+     * in the new balance
+     * @param newBalance
+     */
     public void updateBalance(double newBalance){
         this.balance = newBalance;
     }

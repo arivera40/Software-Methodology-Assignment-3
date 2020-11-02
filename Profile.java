@@ -1,5 +1,14 @@
 package MVC;
 
+/**
+ * This is the class for Profile in which information
+ * such as first and last name of account holder will be 
+ * held
+ * 
+ * @author Andy Rivera and Joseph Shamma
+ *
+ */
+
 public class Profile {
     private String fname;
     private String lname;
@@ -9,11 +18,17 @@ public class Profile {
         this.fname = fname;
         this.lname = lname;
     }
-
+    /**
+     * get first name of account holder
+     * @return
+     */
     public String getFirstName(){
         return fname;
     }
-
+    /**
+     * get last name of account holder
+     * @return
+     */
     public String getLastName(){
         return lname;
     }
@@ -29,4 +44,3 @@ public class Profile {
         return false;
     }
 }
-

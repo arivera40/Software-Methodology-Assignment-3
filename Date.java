@@ -2,6 +2,15 @@ package MVC;
 
 import java.util.StringTokenizer;
 
+/**
+ * This is the class creates a Date with int's year, month, and day
+ * We also compare the date to see if the account was made on the same
+ * date. Also this class checks to see if it is a valid date on the calendar.
+ * 
+ * @author Andy Rivera and Joseph Shamma
+ *
+ */
+
 public class Date implements Comparable<Date> {
     private int year;
     private int month;
@@ -79,8 +88,11 @@ public class Date implements Comparable<Date> {
         }
     }
 
-    //Wikipedia: leap year if year multiple of 4
-    // (except for years evenly divisible by 100, which are not leap years unless evenly divisible by 400)
+    /**
+     * Wikipedia: leap year if year multiple of 4
+     * (except for years evenly divisible by 100, which are not leap years unless evenly divisible by 400)
+     */
+     
     public boolean isLeapYear(int year){
         if(year % 4 == 0){
             if(year % 100 == 0){
@@ -96,4 +108,3 @@ public class Date implements Comparable<Date> {
         return false;
     }
 }
-

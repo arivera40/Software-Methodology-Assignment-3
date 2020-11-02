@@ -3,6 +3,16 @@ package MVC;
 import java.text.DecimalFormat;
 import java.util.Date;
 
+/**
+ * This is the class for AccountDatabase
+ * which will be used for methods such as adding accounts, removing accounts,
+ * growing the amount of accounts and formatting decimals correctly.
+ * 
+ * @author Andy Rivera and Joseph Shamma
+ *
+ */
+
+
 public class AccountDatabase {
     private Account[] accounts;
     private int size;
@@ -14,7 +24,9 @@ public class AccountDatabase {
         size = 0;                  // setting the initial size of the accounts
     }
 
-    // method to to find account
+    /**
+     *  method to to find account
+     */
     private int find(Account account) {
         if(size > 0){
             for( int i = 0; i < size; i++ ){
@@ -26,14 +38,21 @@ public class AccountDatabase {
         return -1;
     }
 
-    // method to grow account by 5 when amount of accounts reach five
+    /**
+     *  method to grow account by 5 when amount of accounts reach five
+     */
     private void grow() {
         Account[] moreAccounts = new Account[accounts.length + 5];
         System.arraycopy(accounts, 0, moreAccounts, 0, accounts.length);
         accounts = moreAccounts;
     }
 
-    //return false if account already exists, otherwise add account and return true
+    /**
+     * Add method adds an account to the database
+     * return false if account already exists, otherwise add account and return true
+     * @param account
+     * @return
+     */
     public String add(Account account) {
         if(find(account) == -1){
             accounts[size] = account;
@@ -46,7 +65,12 @@ public class AccountDatabase {
         return "Account is already in the database.\n";
     }
 
-    //return false if account doesn't exists
+    /**
+     * Remove method removes account from our database
+     * return false if account doesn't exists
+     * @param account
+     * @return
+     */
     public String remove(Account account) {
         int accountIndex = find(account);
         if(accountIndex != -1) {
@@ -58,7 +82,13 @@ public class AccountDatabase {
         return "Account does not exist.\n";
     }
 
-    //return false if account doesnâ€™t exist
+    /**
+     * deposit method adds money to account balance
+     * return false if account doesn’t exist
+     * @param account
+     * @param amount
+     * @return
+     */
     public String deposit(Account account, double amount) {
         int accountIndex = find(account);
         if(accountIndex != -1){
@@ -67,7 +97,14 @@ public class AccountDatabase {
         }
         return "Account does not exist.\n";
     }
-
+    /**
+     * Withdraw method removes amount from balance
+     * if account does not exist return false
+     * if insufficient funds return message "Insufficient funds"
+     * @param account
+     * @param amount
+     * @return
+     */
     public String withdrawal(Account account, double amount) {
         int accountIndex = find(account);
         if(accountIndex == -1){
@@ -84,14 +121,20 @@ public class AccountDatabase {
         }
     }
 
-    // formatting the decimal to pattern set
+    /**
+     *  formatting the decimal to pattern set
+     * @param number
+     * @return
+     */
     private String formatNumber(double number){
         DecimalFormat decimalFormat = new DecimalFormat(pattern);
         String numberStr = decimalFormat.format(number);
         return numberStr;
     }
 
-    // method to sort accounts by the date they were opened
+    /**
+     *  method to sort accounts by the date they were opened
+     */
     private void sortByDateOpen() {
         Account tempAccount;
         for(int i=0; i < size; i++){
@@ -104,7 +147,9 @@ public class AccountDatabase {
             }
         }
     }
-    //method to sort accounts by holder's last name
+    /**
+     * method to sort accounts by holder's last name
+     */
     private void sortByLastName() {
         Account tempAccount;
         int compare = 0;
@@ -130,7 +175,10 @@ public class AccountDatabase {
             }
         }
     }
-    // method to print accounts by when they were opened
+    /**
+     *  method to print accounts by when they were opened
+     * @return
+     */
     public String printByDateOpen() {
         String status = "";
         if(size > 0){
@@ -155,7 +203,10 @@ public class AccountDatabase {
         }
         return status;
     }
-    // method to print accounts by the holder's last name
+    /**
+     *  method to print accounts by the holder's last name
+     * @return
+     */
     public String printByLastName() {
         String status = "";
         if(size > 0){
@@ -181,7 +232,11 @@ public class AccountDatabase {
         return status;
     }
 
-    // method to print all accounts in the database
+    /**
+     *  method to print all accounts in the database
+     * @return
+     */
+    
     public String printAccounts() {
         String output = "";
         if(size > 0){

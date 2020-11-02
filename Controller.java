@@ -18,6 +18,16 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
+/**
+ * This is the Controller class in
+ * which we will handle how our GUI will
+ * be controlled ranging from buttons pressed
+ * to what will be entered by the user
+ * 
+ * @author Andy Rivera and Joseph Shamma
+ *
+ */
+
 
 public class Controller {
     //FXML Variables for openAccountTab
@@ -123,7 +133,6 @@ public class Controller {
 
     @FXML
     void initialize(){
-        System.out.println("Enters initialize");
         loyalCustomer.setDisable(true);
         directDeposit.setDisable(true);
     }
@@ -134,15 +143,12 @@ public class Controller {
      * @param event
      */
     void openAccount(ActionEvent event) {
-        System.out.println("Enters openAccount control...");
-        System.out.println(openFirstName.getText());
         if(!openFormCheck()) return;
         Profile holder = new Profile(openFirstName.getText(), openLastName.getText());
         Double initialDeposit = Double.parseDouble(openAmount.getText());
         Date openDate = parseDate(date.getText());
 
         if(openChecking.isSelected()) {
-            System.out.println("Enters checking if statement...");
             Checking account = new Checking(initialDeposit, holder, openDate);
             account.setDirectDeposit((directDeposit.isSelected()) ? true : false);
             openOutput.appendText(account_interaction.add(account));
@@ -156,7 +162,10 @@ public class Controller {
         }
         clearOpenFormFields();
     }
-
+    /**
+     * Event Handler for openForm Check
+     * @return 
+     */
     private boolean openFormCheck(){
         int dateCheck = checkDate(date.getText());
         if (!openChecking.isSelected() && !openSavings.isSelected() && !openMoneyMarket.isSelected()) {
@@ -196,7 +205,6 @@ public class Controller {
      * @param event
      */
     void closeAccount(ActionEvent event) {
-        System.out.println("Enters closeAccount control...");
         if (!closeFormCheck()) return;
         Profile holder = new Profile(closeFirstName.getText(), closeLastName.getText());
         Date tempDate = parseDate("12/12/2012");
@@ -213,7 +221,10 @@ public class Controller {
         }
         clearCloseFormFields();
     }
-
+    /**
+     * Event Handler for closeForm Check
+     * @return 
+     */
     private boolean closeFormCheck(){
         if (!closeChecking.isSelected() && !closeSavings.isSelected() && !closeMoneyMarket.isSelected()) {
             closeOutput.appendText("Please select an Account type.\n");
@@ -240,7 +251,6 @@ public class Controller {
      * @param event
      */
     void transactionSubmit(ActionEvent event) {
-        System.out.println("Enters transactionSubmit control...");
         if (!transactionFormCheck()) return;
         Profile holder = new Profile(transactionFirstName.getText(), transactionLastName.getText());
         Date tempDate = parseDate("12/12/2012");
@@ -260,7 +270,10 @@ public class Controller {
         transactionOutput.appendText(status);
         clearTransactionFormFields();
     }
-
+    /**
+     * Event Handler for openForm Check
+     * @return 
+     */
     private boolean transactionFormCheck(){
         if (!transactionChecking.isSelected() && !transactionSavings.isSelected() && !transactionMoneyMarket.isSelected()) {
             transactionOutput.appendText("Please select an Account type.\n");
@@ -377,7 +390,6 @@ public class Controller {
      */
     void exportFile(ActionEvent event){
         if(exportOutput.getText().length() > 0) exportOutput.clear();
-        System.out.println("Enters export");
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Specify Text File to Export to");
         chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.txt"),
@@ -405,24 +417,38 @@ public class Controller {
             exportOutput.appendText("No file specified for export.\n");
         }
     }
-
+/**
+ * Print accounts
+ * @param event
+ */
     @FXML
     void print(ActionEvent event){
         if(exportOutput.getText().length() > 0) exportOutput.clear();
         exportOutput.appendText(account_interaction.printAccounts());
     }
-
+    /**
+     * Print accounts by their name
+     * @param event
+     */
     @FXML
     void printByName(ActionEvent event){
         if(exportOutput.getText().length() > 0) exportOutput.clear();
         exportOutput.appendText(account_interaction.printByLastName());
     }
-
+    /**
+     * Print accounts by their date
+     * @param event
+     */
     @FXML void printByDate(ActionEvent event){
         if(exportOutput.getText().length() > 0) exportOutput.clear();
         exportOutput.appendText(account_interaction.printByDateOpen());
     }
-
+    /**
+     * 
+     * This will disable the check box because you can not be a loyal customer
+     * or use direct deposit while creating a money market account
+     * @param moneyMarket
+     */
     @FXML
     void disableCheckBox(ActionEvent moneyMarket){
         if(openChecking.isSelected()){
@@ -440,15 +466,26 @@ public class Controller {
             directDeposit.setDisable(true);
         }
     }
-
+    /**
+     * To make sure you are only using letter in the name fields
+     * @param name
+     * @return
+     */
     private boolean isAlphabetic(String name){
         return name.matches("^[a-zA-Z]*$");
     }
-
+    /**
+     * To make sure deposit and date fields can only accept numbers 
+     * and certain symbols
+     * @param amount
+     * @return
+     */
     private boolean isNumeric(String amount){
         return amount.matches("[0-9]*\\.?[0-9]+$");
     }
-
+    /**
+     * clears the open form fields
+     */
     private void clearOpenFormFields(){
         if(openChecking.isSelected()) openChecking.setSelected(false);
         if(openSavings.isSelected()) openSavings.setSelected(false);
@@ -460,7 +497,9 @@ public class Controller {
         if(directDeposit.isSelected()) directDeposit.setSelected(false);
         if(loyalCustomer.isSelected()) directDeposit.setSelected(false);
     }
-
+    /**
+     * clears the close form fields
+     */
     private void clearCloseFormFields(){
         if(closeChecking.isSelected()) openChecking.setSelected(false);
         if(closeSavings.isSelected()) openSavings.setSelected(false);
@@ -469,7 +508,10 @@ public class Controller {
         closeLastName.clear();
 
     }
-
+    /**
+     * clearing the transaction form fields so that after
+     * someone submits they can have a clean slate
+     */
     private void clearTransactionFormFields(){
         if(transactionChecking.isSelected()) transactionChecking.setSelected(false);
         if(transactionSavings.isSelected()) transactionSavings.setSelected(false);
@@ -480,7 +522,12 @@ public class Controller {
         if(deposit.isSelected()) deposit.setSelected(false);
         if(withdraw.isSelected()) withdraw.setSelected(false);
     }
-
+    /**
+     * 
+     * parsing the date to have it read correctly
+     * @param date
+     * @return
+     */
     private Date parseDate(String date){
         StringTokenizer tokens = new StringTokenizer(date, "/");
         int month = Integer.parseInt(tokens.nextToken());
@@ -490,7 +537,11 @@ public class Controller {
         Date openDate = new Date(year, month, day);
         return openDate;
     }
-
+    /** 
+     * checking to see if the date format is correct and if it is a valid date
+     * @param date
+     * @return
+     */
     public int checkDate(String date){
         int count = 0;
         for(int i=0; i < date.length(); i++){
