@@ -254,9 +254,9 @@
                                           </Label>
                                           <VBox prefHeight="200.0" prefWidth="100.0">
                                              <children>
-                                                <RadioButton fx:id="transactionChecking" mnemonicParsing="false" text="Checking" />
-                                                <RadioButton fx:id="transactionSavings" mnemonicParsing="false" text="Savings" />
-                                                <RadioButton fx:id="transactionMoneyMarket" mnemonicParsing="false" text="MoneyMarket" />
+                                                <RadioButton fx:id="transactionChecking" mnemonicParsing="false" text="Checking" toggleGroup="$accountType"/>
+                                                <RadioButton fx:id="transactionSavings" mnemonicParsing="false" text="Savings" toggleGroup="$accountType"/>
+                                                <RadioButton fx:id="transactionMoneyMarket" mnemonicParsing="false" text="MoneyMarket" toggleGroup="$accountType"/>
                                              </children>
                                           </VBox>
                                        </children>
