@@ -227,14 +227,8 @@ public class Controller {
         }else if(closeLastName.getText().length() == 0){
             closeOutput.appendText("Please enter your last name.\n");
             return false;
-        }else if(!isAlphabetic(closeLastName.getText())){
+        }else if(!isAlphabetic(closeLastName.getText())) {
             closeOutput.appendText("Please enter only alphabetic characters for the last name field.\n");
-            return false;
-        }else if(openAmount.getText().length() == 0){
-            closeOutput.appendText("Please enter an amount you wish to deposit, otherwise enter 0.\n");
-            return false;
-        }else if(!isNumeric(openAmount.getText())){
-            closeOutput.appendText("Please enter numeric values only for the deposit field.\n");
             return false;
         }
         return true;
@@ -284,10 +278,10 @@ public class Controller {
             transactionOutput.appendText("Please enter only alphabetic characters for the last name field.\n");
             return false;
         }else if(transactionAmount.getText().length() == 0){
-            transactionOutput.appendText("Please enter an amount you wish to deposit, otherwise enter 0.\n");
+            transactionOutput.appendText("Please enter an amount you wish to deposit or withdraw, otherwise enter 0.\n");
             return false;
         }else if(!isNumeric(transactionAmount.getText())){
-            transactionOutput.appendText("Please enter numeric values only for the deposit field.\n");
+            transactionOutput.appendText("Please enter numeric values only for the amount field.\n");
         }
         return true;
     }
@@ -477,9 +471,9 @@ public class Controller {
     }
 
     private void clearTransactionFormFields(){
-        if(transactionChecking.isSelected()) openChecking.setSelected(false);
-        if(transactionSavings.isSelected()) openSavings.setSelected(false);
-        if(transactionMoneyMarket.isSelected()) openMoneyMarket.setSelected(false);
+        if(transactionChecking.isSelected()) transactionChecking.setSelected(false);
+        if(transactionSavings.isSelected()) transactionSavings.setSelected(false);
+        if(transactionMoneyMarket.isSelected()) transactionMoneyMarket.setSelected(false);
         transactionFirstName.clear();
         transactionLastName.clear();
         transactionAmount.clear();
