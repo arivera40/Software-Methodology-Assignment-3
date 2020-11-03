@@ -1,6 +1,5 @@
 package MVC;
 
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import java.io.FileNotFoundException;
@@ -9,12 +8,9 @@ import javafx.event.ActionEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import javax.swing.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -31,8 +27,6 @@ import java.util.StringTokenizer;
 
 public class Controller {
     //FXML Variables for openAccountTab
-    @FXML
-    private Tab openAccountTab;
     @FXML
     private Button openAccount;
     @FXML
@@ -55,11 +49,8 @@ public class Controller {
     private CheckBox loyalCustomer;
     @FXML
     private TextArea openOutput;
-    //-------------
 
     //FXML Variables for closeAccountTab
-    @FXML
-    private Tab closeAccountTab;
     @FXML
     private Button closeAccount;
     @FXML
@@ -74,11 +65,8 @@ public class Controller {
     RadioButton closeMoneyMarket;
     @FXML
     private TextArea closeOutput;
-    //-------------
 
     //FXML Variables for transactionTab
-    @FXML
-    private Tab transactionTab;
     @FXML
     private Button transactionSubmit;
     @FXML
@@ -99,14 +87,12 @@ public class Controller {
     private RadioButton withdraw;
     @FXML
     private TextArea transactionOutput;
-    //---------------
 
     //FXML Variables for importTab
     @FXML
     private Button importButton;
     @FXML
     private TextArea importOutput;
-    //---------------
 
     //FXML Variables for printTab
     @FXML
@@ -119,15 +105,11 @@ public class Controller {
     private Button printByDateButton;
     @FXML
     private TextArea exportOutput;
-    //---------------
 
     @FXML
-    private ToggleGroup accountType;    //may not be necessary
+    private ToggleGroup accountType;
     @FXML
     private ToggleGroup transactionType;
-
-
-
 
     protected static AccountDatabase account_interaction = new AccountDatabase();
 
@@ -162,8 +144,9 @@ public class Controller {
         }
         clearOpenFormFields();
     }
+    
     /**
-     * Event Handler for openForm Check
+     * Validates all fields in Open Account form is correct
      * @return 
      */
     private boolean openFormCheck(){
@@ -221,8 +204,9 @@ public class Controller {
         }
         clearCloseFormFields();
     }
+    
     /**
-     * Event Handler for closeForm Check
+     * Validates all fields in Close Account form is correct.
      * @return 
      */
     private boolean closeFormCheck(){
@@ -270,8 +254,9 @@ public class Controller {
         transactionOutput.appendText(status);
         clearTransactionFormFields();
     }
+    
     /**
-     * Event Handler for openForm Check
+     * Validates all fields in Deposit/Withdraw form is correct
      * @return 
      */
     private boolean transactionFormCheck(){
@@ -417,8 +402,9 @@ public class Controller {
             exportOutput.appendText("No file specified for export.\n");
         }
     }
+    
 /**
- * Print accounts
+ * Event handler for Print button
  * @param event
  */
     @FXML
@@ -426,8 +412,9 @@ public class Controller {
         if(exportOutput.getText().length() > 0) exportOutput.clear();
         exportOutput.appendText(account_interaction.printAccounts());
     }
+    
     /**
-     * Print accounts by their name
+     * Event handler for Print by Name button
      * @param event
      */
     @FXML
@@ -435,22 +422,26 @@ public class Controller {
         if(exportOutput.getText().length() > 0) exportOutput.clear();
         exportOutput.appendText(account_interaction.printByLastName());
     }
+    
     /**
-     * Print accounts by their date
+     * Event handler for Print by Date button
      * @param event
      */
-    @FXML void printByDate(ActionEvent event){
+    @FXML
+    void printByDate(ActionEvent event){
         if(exportOutput.getText().length() > 0) exportOutput.clear();
         exportOutput.appendText(account_interaction.printByDateOpen());
     }
+    
     /**
      * 
-     * This will disable the check box because you can not be a loyal customer
-     * or use direct deposit while creating a money market account
-     * @param moneyMarket
+     * Disables Loyal Customer check box when Checking selected
+     * or disables Direct Deposit check box when Savings selected.
+     * If Money Market is selected, both Loyal Customer and Direct Deposit disabled.
+     * @param event
      */
     @FXML
-    void disableCheckBox(ActionEvent moneyMarket){
+    void disableCheckBox(ActionEvent event){
         if(openChecking.isSelected()){
             if(directDeposit.isSelected()) directDeposit.setSelected(false);
             directDeposit.setDisable(false);
@@ -475,14 +466,14 @@ public class Controller {
         return name.matches("^[a-zA-Z]*$");
     }
     /**
-     * To make sure deposit and date fields can only accept numbers 
-     * and certain symbols
+     * To make sure deposit/amount fields can only accept numbers 
      * @param amount
      * @return
      */
     private boolean isNumeric(String amount){
         return amount.matches("[0-9]*\\.?[0-9]+$");
     }
+    
     /**
      * clears the open form fields
      */
@@ -497,6 +488,7 @@ public class Controller {
         if(directDeposit.isSelected()) directDeposit.setSelected(false);
         if(loyalCustomer.isSelected()) directDeposit.setSelected(false);
     }
+    
     /**
      * clears the close form fields
      */
@@ -506,8 +498,8 @@ public class Controller {
         if(closeMoneyMarket.isSelected()) openMoneyMarket.setSelected(false);
         closeFirstName.clear();
         closeLastName.clear();
-
     }
+    
     /**
      * clearing the transaction form fields so that after
      * someone submits they can have a clean slate
@@ -522,8 +514,8 @@ public class Controller {
         if(deposit.isSelected()) deposit.setSelected(false);
         if(withdraw.isSelected()) withdraw.setSelected(false);
     }
+    
     /**
-     * 
      * parsing the date to have it read correctly
      * @param date
      * @return
@@ -537,6 +529,7 @@ public class Controller {
         Date openDate = new Date(year, month, day);
         return openDate;
     }
+    
     /** 
      * checking to see if the date format is correct and if it is a valid date
      * @param date
@@ -548,7 +541,8 @@ public class Controller {
             if(date.charAt(i) == '/') count++;
         }
         if(count != 2){
-            return -1;  //Input data type mismatch
+            //Input data type mismatch
+            return -1;
         }
         StringTokenizer tokens = new StringTokenizer(date, "/");
         int day = 0;
@@ -564,16 +558,20 @@ public class Controller {
                 }else if(i == 2){
                     year = Integer.parseInt(temp);
                 }else{
-                    return -1;	//malformed
+                    //Input data type mismatch
+                    return -1;
                 }
             }catch(NumberFormatException e){
-                return -1;  //Input data type mismatch
+                //Input data type mismatch
+                return -1;
             }
         }
         if(new Date(year, month, day).isValid()){
-            return 1;  //valid date
+            //valid date
+            return 1;
         }else{
-            return 0;  //invalid date
+            //invalid date
+            return 0;
         }
     }
 }
