@@ -1,7 +1,6 @@
 package MVC;
 
 import java.text.DecimalFormat;
-import java.util.Date;
 
 /**
  * This is the class for AccountDatabase
@@ -84,7 +83,7 @@ public class AccountDatabase {
 
     /**
      * deposit method adds money to account balance
-     * return false if account doesn’t exist
+     * return false if account doesnâ€™t exist
      * @param account
      * @param amount
      * @return
